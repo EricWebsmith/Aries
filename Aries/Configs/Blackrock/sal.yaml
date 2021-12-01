@@ -1,0 +1,2 @@
+﻿- class: Keeper
+  Xpath: //page/text[number(@top)<200 and text()='Statement of Assets and Liabilities']/ancestor::page
