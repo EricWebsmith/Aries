@@ -9,6 +9,7 @@ namespace Aries.Desktop
         private ProcessorContainer processorContainer;
         private WebBrowser webBrowser;
         private TreeNode treeRoot;
+        const string configFile = "D:/projects/Aries/config.json";
 
         public MainForm()
         {
@@ -44,21 +45,21 @@ namespace Aries.Desktop
             webBrowser.Visible = true;
             webBrowser.Navigate(new Uri("file:///D:/projects/Aries/sample.html"));
             webBrowser.Dock = DockStyle.Fill;
+            // mainSplitContainer.Panel1.Controls.Add(webBrowser);
             mainPanel.Controls.Add(webBrowser);
             //this.Controls.Add(webBrowser);
 
-            string binFile = @"D:\projects\Aries\MyFile.bin";
-            if (File.Exists(binFile))
+            if (File.Exists(configFile))
             {
-                processorContainer = ProcessorSerializer.Deserialize(binFile);
+                processorContainer = ProcessorSerializer.Deserialize(configFile);
                 BuildTree(processorContainer);
             }
             else
             {
                 processorContainer = new ProcessorContainer();
             }
-            
-            
+
+            this.InitLayout();
         }
 
         private void BuildTree(ProcessorContainer processorContainer)
@@ -72,7 +73,7 @@ namespace Aries.Desktop
             foreach (Processor p in processorContainer)
             {
                 ProcessorNode newNode = new ProcessorNode();
-                newNode.Text = p.GetType().Name;
+                newNode.Text = p.GetType().Name + "_" + p.Description;
                 newNode.Processor = p;
                 newNode.ProcessId = id;
                 treeRoot.Nodes.Add(newNode);
@@ -93,15 +94,15 @@ namespace Aries.Desktop
 
             TreeNode node = processorTree.SelectedNode;
 
-            if(node == null)
+            if (node == null || node.Parent == null)
             {
-                treeRoot.Nodes.Insert(0, newNode);
+                treeRoot.Nodes.Add(newNode);
             }
             else
             {
-                node.Nodes.Insert(node.Index, newNode);
+                node.Parent.Nodes.Insert(node.Index + 1, newNode);
             }
-            
+
 
 
             // Container
@@ -133,6 +134,10 @@ namespace Aries.Desktop
 
         private void processorTree_DoubleClick(object sender, EventArgs e)
         {
+            if(!(processorTree.SelectedNode is ProcessorNode))
+            {
+                return;
+            }
 
             ProcessorNode node = (ProcessorNode)processorTree.SelectedNode;
 
@@ -204,7 +209,16 @@ namespace Aries.Desktop
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            ProcessorSerializer.Serialize(processorContainer, @"D:\projects\Aries\MyFile.bin");
+            processorContainer.Clear();
+            foreach (var node in treeRoot.Nodes)
+            {
+                if (node is ProcessorNode)
+                {
+                    ProcessorNode processorNode = (ProcessorNode)node;
+                    processorContainer.Add(processorNode.Processor);
+                }
+            }
+            ProcessorSerializer.Serialize(processorContainer, configFile);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace Aries.Processors;
 
 [Serializable]
-public class ColumnDetector : Processor
+public class RowDetector : Processor
 {
     private bool SameColumn(int[] arr1, int[] arr2)
     {
@@ -35,14 +35,14 @@ public class ColumnDetector : Processor
         var pages = doc.Root.Elements("page").ToList();
         foreach (var page in pages)
         {
-            var texts = page.XPath2SelectElements("text[@number='true']").ToList();
+            var texts = page.Elements("text").ToList();
             int n = texts.Count;
             int[] unionFind = new int[n];
             int[][] matrix = new int[n][];
             for (int i = 0; i < n; i++)
             {
-                int left = int.Parse(texts[i].Attribute("left").Value);
-                int width = int.Parse(texts[i].Attribute("width").Value);
+                int left = int.Parse(texts[i].Attribute("top").Value);
+                int width = int.Parse(texts[i].Attribute("height").Value);
                 int right = left + width;
                 matrix[i] = new int[] { left, right, width };
                 unionFind[i] = i;
@@ -76,7 +76,7 @@ public class ColumnDetector : Processor
             for(int i = 0; i < n; i++)
             {
                 clusterId = clusterDict[unionFind[i]];
-                texts[i].Add(new XAttribute("column", clusterId));
+                texts[i].Add(new XAttribute("row", clusterId));
             }
         }
         return doc;

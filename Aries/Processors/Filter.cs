@@ -10,7 +10,7 @@ public class Filter : Processor
     public override XDocument Process(XDocument doc)
     {
 
-        var nodes = doc.XPath2SelectElements(XPath);
+        var nodes = doc.Root.XPath2SelectElements(XPath).ToList();
         if (nodes == null)
         {
             return doc;

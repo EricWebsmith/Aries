@@ -31,45 +31,22 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Processes");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.processorTree = new System.Windows.Forms.TreeView();
             this.treeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.processorTree = new System.Windows.Forms.TreeView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.runButton = new System.Windows.Forms.ToolStripButton();
             this.saveButton = new System.Windows.Forms.ToolStripButton();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.treeMenu.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // propertyGrid1
-            // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 330);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(308, 247);
-            this.propertyGrid1.TabIndex = 0;
-            // 
-            // processorTree
-            // 
-            this.processorTree.ContextMenuStrip = this.treeMenu;
-            this.processorTree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.processorTree.Location = new System.Drawing.Point(0, 25);
-            this.processorTree.Name = "processorTree";
-            treeNode1.Name = "RootNode";
-            treeNode1.Text = "Processes";
-            this.processorTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            this.processorTree.Size = new System.Drawing.Size(308, 305);
-            this.processorTree.TabIndex = 1;
-            this.processorTree.Click += new System.EventHandler(this.processorTree_Click);
-            this.processorTree.DoubleClick += new System.EventHandler(this.processorTree_DoubleClick);
             // 
             // treeMenu
             // 
@@ -109,16 +86,19 @@
             this.moveDownToolStripMenuItem.Text = "Move &Down";
             this.moveDownToolStripMenuItem.Click += new System.EventHandler(this.moveDownToolStripMenuItem_Click);
             // 
-            // panel1
+            // processorTree
             // 
-            this.panel1.Controls.Add(this.processorTree);
-            this.panel1.Controls.Add(this.propertyGrid1);
-            this.panel1.Controls.Add(this.toolStrip1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(728, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(308, 577);
-            this.panel1.TabIndex = 2;
+            this.processorTree.ContextMenuStrip = this.treeMenu;
+            this.processorTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.processorTree.Location = new System.Drawing.Point(0, 25);
+            this.processorTree.Name = "processorTree";
+            treeNode1.Name = "RootNode";
+            treeNode1.Text = "Processes";
+            this.processorTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            this.processorTree.Size = new System.Drawing.Size(512, 404);
+            this.processorTree.TabIndex = 6;
+            this.processorTree.DoubleClick += new System.EventHandler(this.processorTree_DoubleClick);
             // 
             // toolStrip1
             // 
@@ -127,8 +107,8 @@
             this.saveButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(308, 25);
-            this.toolStrip1.TabIndex = 3;
+            this.toolStrip1.Size = new System.Drawing.Size(512, 25);
+            this.toolStrip1.TabIndex = 8;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // runButton
@@ -152,46 +132,64 @@
             this.saveButton.Text = "&Save";
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.propertyGrid1.Location = new System.Drawing.Point(0, 429);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(512, 247);
+            this.propertyGrid1.TabIndex = 9;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.processorTree);
+            this.panel1.Controls.Add(this.propertyGrid1);
+            this.panel1.Controls.Add(this.toolStrip1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(716, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(512, 676);
+            this.panel1.TabIndex = 7;
+            // 
             // mainPanel
             // 
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(728, 577);
-            this.mainPanel.TabIndex = 3;
+            this.mainPanel.Size = new System.Drawing.Size(716, 676);
+            this.mainPanel.TabIndex = 8;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1036, 577);
+            this.ClientSize = new System.Drawing.Size(1228, 676);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.Text = "Accounint Report Information Extraction System (ARIES)";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.treeMenu.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private PropertyGrid propertyGrid1;
-        private TreeView processorTree;
         private ContextMenuStrip treeMenu;
         private ToolStripMenuItem addToolStripMenuItem;
         private ToolStripMenuItem removeToolStripMenuItem;
         private ToolStripMenuItem moveUpToolStripMenuItem;
         private ToolStripMenuItem moveDownToolStripMenuItem;
-        private Panel panel1;
+        private TreeView processorTree;
         private ToolStrip toolStrip1;
         private ToolStripButton runButton;
-        private Panel mainPanel;
         private ToolStripButton saveButton;
+        private PropertyGrid propertyGrid1;
+        private Panel panel1;
+        private Panel mainPanel;
     }
 }

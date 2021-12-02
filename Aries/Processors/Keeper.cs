@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Aries.Processors;
+﻿namespace Aries.Processors;
 
 [Serializable]
 public class Keeper : Processor
@@ -23,7 +21,7 @@ public class Keeper : Processor
     public override XDocument Process(XDocument doc)
     {
 
-        var keepNodes = doc.XPathSelectElements(this.XPath);
+        var keepNodes = doc.Root.XPath2SelectElements(XPath);
         if (keepNodes == null)
         {
             return doc;

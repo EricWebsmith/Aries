@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aries", "Aries\Aries.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C533CEAF-549E-4563-9181-364766D7DBBC}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		readme.md = readme.md
 	EndProjectSection
 EndProject
@@ -14,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aries.Desktop", "Aries.Desk
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aries.Console", "Aries.Console\Aries.Console.csproj", "{759AAD3B-CE90-4415-94CE-2DF3CA141C00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aries.Test", "Aries.Test\Aries.Test.csproj", "{12E086A8-B264-4088-8B35-09D41B789A3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aries.Test", "Aries.Test\Aries.Test.csproj", "{12E086A8-B264-4088-8B35-09D41B789A3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
