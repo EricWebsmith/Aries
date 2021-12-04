@@ -23,8 +23,6 @@ public class TableBuilder : Processor
 
         var groups = from t in texts orderby t.Row group t by t.Row;
 
-        
-
         XDocument tableDocument = new XDocument(new XElement("table"));
         foreach (var group in groups)
         {
