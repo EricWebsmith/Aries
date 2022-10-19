@@ -1,0 +1,82 @@
+{
+  "$type": "Aries.ProcessorContainer, Aries",
+  "$values": [
+    {
+      "$type": "Aries.Processors.FontExtractor, Aries",
+      "Description": ""
+    },
+    {
+      "$type": "Aries.Processors.Keeper, Aries",
+      "XPath": "/page[text[@top<100 and matches(text(), 'Statement of Assets and Liabilities')]]",
+      "Description": "locate page"
+    },
+    {
+      "$type": "Aries.Processors.Filter, Aries",
+      "XPath": "/page/text[matches(text(), '^[\\.\\s]+$')]",
+      "Description": "remove ..."
+    },
+    {
+      "$type": "Aries.Processors.AnchorFilter, Aries",
+      "Scope": 0,
+      "AnchorXPath": "/fonts/fontspec[number(@size)<10]",
+      "XPath": "/page/text[@font='{id}']",
+      "Description": "remove superscripts"
+    },
+    {
+      "$type": "Aries.Processors.AnchorFilter, Aries",
+      "Scope": 1,
+      "AnchorXPath": ".",
+      "XPath": "text[@top+150>{height}]",
+      "Description": "Remove footer"
+    },
+    {
+      "$type": "Aries.Processors.Replacer, Aries",
+      "XPath": "//text",
+      "Pattern": "\\$",
+      "Replacement": "",
+      "Description": "$"
+    },
+    {
+      "$type": "Aries.Processors.Filter, Aries",
+      "XPath": "/page/text[matches(text(), '^\\s*$')]",
+      "Description": "Empty"
+    },
+    {
+      "$type": "Aries.Processors.AnchorFilter, Aries",
+      "Scope": 1,
+      "AnchorXPath": "text[text()='ASSETS']",
+      "XPath": "text[@top<{top}]",
+      "Description": "Header"
+    },
+    {
+      "$type": "Aries.Processors.Filter, Aries",
+      "XPath": "/page/text[text()='Distributions for annual periods determined in accordance with U.S. federal income tax regulations.']",
+      "Description": "Distributions for.."
+    },
+    {
+      "$type": "Aries.Processors.Filter, Aries",
+      "XPath": "/page/text[contains(text(), 'See notes to')]",
+      "Description": "See notes to..."
+    },
+    {
+      "$type": "Aries.Processors.NumberDetector, Aries",
+      "Description": ""
+    },
+    {
+      "$type": "Aries.Processors.RowDetector, Aries",
+      "Description": ""
+    },
+    {
+      "$type": "Aries.Processors.ColumnDetector, Aries",
+      "Description": ""
+    },
+    {
+      "$type": "Aries.Processors.TableHeadDetector, Aries",
+      "Description": ""
+    },
+    {
+      "$type": "Aries.Processors.TableBuilder, Aries",
+      "Description": ""
+    }
+  ]
+}

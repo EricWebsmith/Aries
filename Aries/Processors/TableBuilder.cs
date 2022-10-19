@@ -1,4 +1,6 @@
-﻿namespace Aries.Processors;
+﻿using System.Runtime.CompilerServices;
+
+namespace Aries.Processors;
 
 [Serializable]
 public class TableBuilder : Processor
@@ -37,7 +39,12 @@ public class TableBuilder : Processor
                 if (t.Column.HasValue)
                 {
                     XElement cell = new XElement("cell");
-                    cell.Add(new XAttribute("name", headDict[t.Column.Value]));
+                    string name = "col" + t.Column.Value;
+                    if (headDict.ContainsKey(t.Column.Value))
+                    {
+                        name = headDict[t.Column.Value];
+                    }
+                    cell.Add(new XAttribute("name", name));
 
                     if (t.Number)
                     {
@@ -55,8 +62,13 @@ public class TableBuilder : Processor
                 }
                 else
                 {
-                    row.Add(new XAttribute("name", t.Content.ToLower()));
-                    hasName = true;
+                    var attr = row.Attribute("name");
+                    if (attr == null)
+                    {
+
+                        row.Add(new XAttribute("name", t.Content.ToLower()));
+                        hasName = true;
+                    }
                 }
 
             }

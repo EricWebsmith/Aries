@@ -9,7 +9,6 @@ namespace Aries.Desktop
         private ProcessorContainer processorContainer;
         private WebBrowser webBrowser;
         private TreeNode treeRoot;
-        const string configFile = "D:/projects/Aries/config.json";
 
         public MainForm()
         {
@@ -18,9 +17,6 @@ namespace Aries.Desktop
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Filter processor = new Filter();
-            //processor.XPath = "//page[@number='1']";
-            //propertyGrid1.SelectedObject = processor;
 
             ToolStripMenuItem[] items = new ToolStripMenuItem[UIHelper.ProcessorTypes.Count];
             for (int i = 0; i < items.Length; i++)
@@ -36,22 +32,20 @@ namespace Aries.Desktop
 
             addToolStripMenuItem.DropDownItems.AddRange(items);
 
-            // load xml
-            doc = XDocument.Load("D:/projects/Aries/sample.xml");
-            // convert xml to html
+            if (File.Exists(reportTextBox.Text))
+            {
+                doc = XDocument.Load(reportTextBox.Text);
+            }
 
             webBrowser = new WebBrowser();
             webBrowser.Show();
             webBrowser.Visible = true;
-            webBrowser.Navigate(new Uri("file:///D:/projects/Aries/sample.html"));
             webBrowser.Dock = DockStyle.Fill;
-            // mainSplitContainer.Panel1.Controls.Add(webBrowser);
             mainPanel.Controls.Add(webBrowser);
-            //this.Controls.Add(webBrowser);
 
-            if (File.Exists(configFile))
+            if (File.Exists(configTextBox.Text))
             {
-                processorContainer = ProcessorSerializer.Deserialize(configFile);
+                processorContainer = ProcessorSerializer.Deserialize(configTextBox.Text);
                 BuildTree(processorContainer);
             }
             else
@@ -102,7 +96,6 @@ namespace Aries.Desktop
             {
                 node.Parent.Nodes.Insert(node.Index + 1, newNode);
             }
-
 
 
             // Container
@@ -218,7 +211,39 @@ namespace Aries.Desktop
                     processorContainer.Add(processorNode.Processor);
                 }
             }
-            ProcessorSerializer.Serialize(processorContainer, configFile);
+            ProcessorSerializer.Serialize(processorContainer, configTextBox.Text);
+        }
+
+        private void reportButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            var result = ofd.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                reportTextBox.Text = ofd.FileName;
+            }
+
+            doc = XDocument.Load(ofd.FileName);
+        }
+
+        private void configButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            var result = ofd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                configTextBox.Text = ofd.FileName;
+            }
+
+            if (File.Exists(configTextBox.Text))
+            {
+                processorContainer = ProcessorSerializer.Deserialize(configTextBox.Text);
+                BuildTree(processorContainer);
+            }
+            else
+            {
+                processorContainer = new ProcessorContainer();
+            }
         }
     }
 }

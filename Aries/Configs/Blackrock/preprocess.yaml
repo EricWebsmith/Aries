@@ -1,5 +1,0 @@
-﻿- class: Filter
-  Xpath: //page[@number='1']
-- class: Filter
-  Xpath: //page[@number='2']
-

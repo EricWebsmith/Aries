@@ -189,19 +189,19 @@ public static class Xml2Html
     }
 
     .row0{
-      color:rgb(53, 9, 9);
+      color:rgb(255, 9, 9);
     }
 
     .row1{
-      color:rgb(10, 53, 9);
+      color:rgb(10, 255, 9);
     }
 
     .row2{
-      color:rgb(6, 11, 49);
+      color:rgb(6, 11, 255);
     }
 
     .row3{
-      color:rgb(37, 34, 6);
+      color:rgb(255, 255, 6);
     }
 ");
 
