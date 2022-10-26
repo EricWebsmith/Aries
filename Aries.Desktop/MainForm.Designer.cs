@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Processes");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Processes");
             this.treeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -195,10 +195,10 @@
             this.processorTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.processorTree.Location = new System.Drawing.Point(0, 0);
             this.processorTree.Name = "processorTree";
-            treeNode2.Name = "RootNode";
-            treeNode2.Text = "Processes";
+            treeNode1.Name = "RootNode";
+            treeNode1.Text = "Processes";
             this.processorTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.processorTree.Size = new System.Drawing.Size(510, 351);
             this.processorTree.TabIndex = 6;
             this.processorTree.DoubleClick += new System.EventHandler(this.processorTree_DoubleClick);
@@ -218,6 +218,7 @@
             this.ClientSize = new System.Drawing.Size(1228, 676);
             this.Controls.Add(this.outerPanel);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Accounint Report Information Extraction System (ARIES)";
             this.Load += new System.EventHandler(this.Form1_Load);
